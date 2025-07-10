@@ -13,9 +13,6 @@ import java.util.regex.Pattern;
  * Utilidad para validación de entrada de usuario
  * Proporciona métodos para validar y leer diferentes tipos de datos
  * 
- * @author Tu Nombre
- * @version 1.0
- * @since 2025-01-01
  */
 public class InputValidator {
     

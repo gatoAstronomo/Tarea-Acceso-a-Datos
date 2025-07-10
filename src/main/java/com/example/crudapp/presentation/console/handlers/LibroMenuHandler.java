@@ -17,9 +17,6 @@ import java.util.Optional;
  * Handler para el menú de gestión de libros
  * Maneja todas las operaciones relacionadas con libros en la interfaz de consola
  * 
- * @author Tu Nombre
- * @version 1.0
- * @since 2025-01-01
  */
 public class LibroMenuHandler {
     

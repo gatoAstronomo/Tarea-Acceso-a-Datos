@@ -18,9 +18,6 @@ import java.util.stream.Collectors;
  * Inicializador de base de datos
  * Ejecuta scripts SQL de forma idempotente (puede ejecutarse múltiples veces)
  * 
- * @author Tu Nombre
- * @version 1.0
- * @since 2025-01-01
  */
 public class DatabaseInitializer {
     

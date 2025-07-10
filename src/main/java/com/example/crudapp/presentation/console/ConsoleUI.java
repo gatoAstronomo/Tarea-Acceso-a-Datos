@@ -15,9 +15,6 @@ import java.util.Scanner;
  * Interfaz de usuario en consola
  * Maneja el menú principal y delega operaciones específicas a los handlers
  * 
- * @author Tu Nombre
- * @version 1.0
- * @since 2025-01-01
  */
 public class ConsoleUI {
     

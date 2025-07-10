@@ -10,9 +10,6 @@ import java.util.List;
  * Utilidad para formatear tablas en consola
  * Proporciona métodos para mostrar datos en formato tabular
  * 
- * @author Tu Nombre
- * @version 1.0
- * @since 2025-01-01
  */
 public class TableFormatter {
     

@@ -22,9 +22,6 @@ import java.util.Optional;
  * Handler para el menú de gestión de préstamos
  * Maneja todas las operaciones relacionadas con préstamos en la interfaz de consola
  * 
- * @author Tu Nombre
- * @version 1.0
- * @since 2025-01-01
  */
 public class PrestamoMenuHandler {
     

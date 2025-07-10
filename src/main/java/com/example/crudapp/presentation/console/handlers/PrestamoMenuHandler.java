@@ -17,7 +17,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 /**
  * Handler para el menú de gestión de préstamos
@@ -34,7 +33,6 @@ public class PrestamoMenuHandler {
     private final PrestamoService prestamoService;
     private final UsuarioService usuarioService;
     private final LibroService libroService;
-    private final Scanner scanner;
     private final InputValidator inputValidator;
     private final TableFormatter tableFormatter;
     
@@ -48,11 +46,10 @@ public class PrestamoMenuHandler {
      * @param inputValidator validador de entrada
      */
     public PrestamoMenuHandler(PrestamoService prestamoService, UsuarioService usuarioService, 
-                              LibroService libroService, Scanner scanner, InputValidator inputValidator) {
+                              LibroService libroService, InputValidator inputValidator) {
         this.prestamoService = prestamoService;
         this.usuarioService = usuarioService;
         this.libroService = libroService;
-        this.scanner = scanner;
         this.inputValidator = inputValidator;
         this.tableFormatter = new TableFormatter();
     }

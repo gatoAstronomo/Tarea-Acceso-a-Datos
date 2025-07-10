@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 /**
  * Handler para el menú de gestión de usuarios
@@ -27,7 +26,6 @@ public class UsuarioMenuHandler {
     private static final Logger logger = LoggerFactory.getLogger(UsuarioMenuHandler.class);
     
     private final UsuarioService usuarioService;
-    private final Scanner scanner;
     private final InputValidator inputValidator;
     private final TableFormatter tableFormatter;
     
@@ -38,9 +36,8 @@ public class UsuarioMenuHandler {
      * @param scanner scanner para entrada de usuario
      * @param inputValidator validador de entrada
      */
-    public UsuarioMenuHandler(UsuarioService usuarioService, Scanner scanner, InputValidator inputValidator) {
+    public UsuarioMenuHandler(UsuarioService usuarioService, InputValidator inputValidator) {
         this.usuarioService = usuarioService;
-        this.scanner = scanner;
         this.inputValidator = inputValidator;
         this.tableFormatter = new TableFormatter();
     }

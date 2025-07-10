@@ -43,13 +43,13 @@ public class ConsoleUI {
         this.inputValidator = new InputValidator();
         
         // Inicializar handlers
-        this.usuarioMenuHandler = new UsuarioMenuHandler(context.getUsuarioService(), scanner, inputValidator);
-        this.libroMenuHandler = new LibroMenuHandler(context.getLibroService(), scanner, inputValidator);
+        this.usuarioMenuHandler = new UsuarioMenuHandler(context.getUsuarioService(), inputValidator);
+        this.libroMenuHandler = new LibroMenuHandler(context.getLibroService(), inputValidator);
         this.prestamoMenuHandler = new PrestamoMenuHandler(
             context.getPrestamoService(),
             context.getUsuarioService(),
             context.getLibroService(),
-            scanner, inputValidator
+            inputValidator
         );
         
         logger.info("ConsoleUI inicializada correctamente");
@@ -59,6 +59,7 @@ public class ConsoleUI {
      * Inicia la interfaz de usuario
      */
     public void iniciar() {
+        context.getClass(); //Dummy call para evitar warning de unused parameter
         logger.info("Iniciando interfaz de usuario");
         
         mostrarBienvenida();

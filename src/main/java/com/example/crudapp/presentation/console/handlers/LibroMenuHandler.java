@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 /**
  * Handler para el menú de gestión de libros
@@ -27,7 +26,6 @@ public class LibroMenuHandler {
     private static final Logger logger = LoggerFactory.getLogger(LibroMenuHandler.class);
     
     private final LibroService libroService;
-    private final Scanner scanner;
     private final InputValidator inputValidator;
     private final TableFormatter tableFormatter;
     
@@ -38,9 +36,8 @@ public class LibroMenuHandler {
      * @param scanner scanner para entrada de usuario
      * @param inputValidator validador de entrada
      */
-    public LibroMenuHandler(LibroService libroService, Scanner scanner, InputValidator inputValidator) {
+    public LibroMenuHandler(LibroService libroService, InputValidator inputValidator) {
         this.libroService = libroService;
-        this.scanner = scanner;
         this.inputValidator = inputValidator;
         this.tableFormatter = new TableFormatter();
     }

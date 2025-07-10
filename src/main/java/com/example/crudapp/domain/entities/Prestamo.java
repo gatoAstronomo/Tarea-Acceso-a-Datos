@@ -11,6 +11,7 @@ public class Prestamo {
     private LocalDate fechaDevolucionEsperada;
     private LocalDate fechaDevolucionReal;
     private String estado;
+    private String observaciones;
     
     // Entidades relacionadas (para joins)
     private Usuario usuario;
@@ -23,7 +24,7 @@ public class Prestamo {
         this.libroId = libroId;
         this.fechaPrestamo = LocalDate.now();
         this.fechaDevolucionEsperada = fechaDevolucionEsperada;
-        this.estado = "activo";
+        this.estado = "ACTIVO";
     }
     
     // Getters y Setters
@@ -57,17 +58,20 @@ public class Prestamo {
     
     public Libro getLibro() { return libro; }
     public void setLibro(Libro libro) { this.libro = libro; }
+
+    public String getObservaciones() { return observaciones; }
+    public void setObservaciones(String observaciones) { this.observaciones = observaciones; }
     
     // Métodos de negocio
     public boolean isVencido() {
-        return "activo".equals(estado) && 
+        return "ACTIVO".equals(estado) && 
                fechaDevolucionEsperada != null && 
                LocalDate.now().isAfter(fechaDevolucionEsperada);
     }
     
     public void devolver() {
         this.fechaDevolucionReal = LocalDate.now();
-        this.estado = "devuelto";
+        this.estado = "DEVUELTO";
     }
     
     @Override

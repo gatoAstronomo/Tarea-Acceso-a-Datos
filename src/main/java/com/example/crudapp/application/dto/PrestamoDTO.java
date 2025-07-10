@@ -10,6 +10,7 @@ public class PrestamoDTO {
     private LocalDate fechaDevolucionEsperada;
     private LocalDate fechaDevolucionReal;
     private String estado;
+    private String observaciones;
     
     /**
      * Constructor por defecto
@@ -159,6 +160,24 @@ public class PrestamoDTO {
      */
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    /**
+     * Obtiene las observaciones del préstamo
+     * 
+     * @return estado del préstamo
+     */
+    public String getObservaciones() {
+        return observaciones;
+    }
+    
+    /**
+     * Establece el estado del préstamo
+     * 
+     * @param estado estado del préstamo
+     */
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
     
     /**

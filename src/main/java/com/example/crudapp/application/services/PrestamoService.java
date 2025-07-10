@@ -246,7 +246,7 @@ public class PrestamoService {
 
         LocalDate fechaDevolucionFinal = fechaDevolucion != null ? fechaDevolucion : LocalDate.now();
 
-        logger.debug("Devolviendo libro para préstamo ID: {} en fecha: {}", prestamoId, fechaDevolucionFinal);
+        logger.debug("Devolviendo libro para préstamo ID: {} en fecha: {} con las siguientes observaciones: {}", prestamoId, fechaDevolucionFinal, observaciones);
 
         transactionManager.executeInTransactionVoid(connection -> {
             Optional<Prestamo> prestamoOpt = prestamoRepository.findById(connection, prestamoId);

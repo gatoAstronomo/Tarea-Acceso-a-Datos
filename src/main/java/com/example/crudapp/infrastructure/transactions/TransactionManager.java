@@ -59,7 +59,7 @@ public class TransactionManager {
             if (connection != null) {
                 try {
                     connection.rollback();
-                    logger.warn("Transacción revertida debido a error: {}", e.getMessage());
+                    logger.warn("Transacción revertida debido a error: {} class: {}", e.getMessage(), e.getClass().getName());
                 } catch (SQLException rollbackException) {
                     logger.error("Error al revertir transacción", rollbackException);
                     e.addSuppressed(rollbackException);

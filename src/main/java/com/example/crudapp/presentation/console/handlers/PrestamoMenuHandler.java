@@ -194,7 +194,7 @@ public class PrestamoMenuHandler {
         }
         
         PrestamoDTO prestamoDTO = new PrestamoDTO(usuarioId, libroId, fechaDevolucionEsperada);
-        //prestamoDTO.setObservaciones(observaciones);
+        prestamoDTO.setObservaciones(observaciones);
         
         try {
             Prestamo prestamo = prestamoService.crearPrestamo(prestamoDTO);
@@ -422,8 +422,8 @@ public class PrestamoMenuHandler {
                 prestamo.getFechaPrestamo(),
                 prestamo.getFechaDevolucionEsperada(),
                 prestamo.getFechaDevolucionReal() != null ? prestamo.getFechaDevolucionReal().toString() : "No devuelto",
-                prestamo.getEstado()//,
-                //prestamo.getObservaciones() != null ? prestamo.getObservaciones() : "Sin observaciones"
+                prestamo.getEstado(),
+                prestamo.getObservaciones() != null ? prestamo.getObservaciones() : "Sin observaciones"
             ));
             
         } catch (SQLException e) {
@@ -444,8 +444,8 @@ public class PrestamoMenuHandler {
                 prestamo.getFechaPrestamo(),
                 prestamo.getFechaDevolucionEsperada(),
                 prestamo.getFechaDevolucionReal() != null ? prestamo.getFechaDevolucionReal().toString() : "No devuelto",
-                prestamo.getEstado()//,
-                //prestamo.getObservaciones() != null ? prestamo.getObservaciones() : "Sin observaciones"
+                prestamo.getEstado(),
+                prestamo.getObservaciones() != null ? prestamo.getObservaciones() : "Sin observaciones"
             ));
         }
     }

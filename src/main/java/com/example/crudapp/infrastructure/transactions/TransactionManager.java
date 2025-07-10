@@ -18,8 +18,8 @@ public class TransactionManager {
     private static final Logger logger = LoggerFactory.getLogger(TransactionManager.class);
     private final Database database;
     
-    public TransactionManager(Database databaseConfig) {
-        this.database = databaseConfig;
+    public TransactionManager(Database database) {
+        this.database = database;
     }
     
     /**

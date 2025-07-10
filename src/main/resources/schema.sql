@@ -57,6 +57,13 @@ CREATE TRIGGER trigger_prestamos_fecha_modificacion
     FOR EACH ROW
     EXECUTE FUNCTION actualizar_fecha_modificacion();
 
+-- Trigger que se ejecuta automáticamente
+DROP TRIGGER IF EXISTS trigger_actualizar_prestamos_vencidos ON prestamos;
+CREATE TRIGGER trigger_actualizar_prestamos_vencidos
+    AFTER INSERT OR UPDATE OR DELETE ON prestamos
+    FOR EACH STATEMENT
+    EXECUTE FUNCTION actualizar_prestamos_vencidos();
+
 -- Índices para mejor performance
 CREATE INDEX IF NOT EXISTS idx_usuarios_email ON usuarios(email);
 CREATE INDEX IF NOT EXISTS idx_libros_isbn ON libros(isbn);

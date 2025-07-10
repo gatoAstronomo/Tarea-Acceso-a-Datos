@@ -18,7 +18,7 @@ INSERT INTO libros (titulo, autor, isbn, genero, año_publicacion) VALUES
 ('La metamorfosis', 'Franz Kafka', '978-84-376-0500-5', 'Literatura moderna', 1915)
 ON CONFLICT (isbn) DO NOTHING;
 
--- ✅ CREAR PRÉSTAMOS ACTIVOS Y MARCAR LIBROS COMO NO DISPONIBLES
+-- CREAR PRÉSTAMOS ACTIVOS Y MARCAR LIBROS COMO NO DISPONIBLES
 
 -- Préstamo 1: Juan toma "Cien años de soledad" (ACTIVO)
 INSERT INTO prestamos (usuario_id, libro_id, fecha_prestamo, fecha_devolucion_esperada, estado) 
@@ -59,7 +59,7 @@ WHERE u.email = 'carlos@email.com'
       AND p.estado IN ('ACTIVO', 'VENCIDO')
   );
 
--- ✅ EJEMPLOS DE PRÉSTAMOS DEVUELTOS (historial)
+-- EJEMPLOS DE PRÉSTAMOS DEVUELTOS (historial)
 -- Juan devolvió "Crónica de una muerte anunciada"
 INSERT INTO prestamos (usuario_id, libro_id, fecha_prestamo, fecha_devolucion_esperada, fecha_devolucion_real, estado) 
 SELECT u.id, l.id, '2025-06-20', '2025-06-30', '2025-06-28', 'DEVUELTO'
@@ -99,7 +99,7 @@ WHERE u.email = 'pedro@email.com'
       AND p.fecha_prestamo = '2025-06-01'
   );
 
--- ✅ ACTUALIZAR DISPONIBILIDAD DE LIBROS SEGÚN PRÉSTAMOS ACTIVOS/VENCIDOS
+-- ACTUALIZAR DISPONIBILIDAD DE LIBROS SEGÚN PRÉSTAMOS ACTIVOS/VENCIDOS
 
 -- Marcar como NO disponible los libros con préstamos ACTIVOS
 UPDATE libros 

@@ -23,10 +23,6 @@ BEGIN
     -- Obtener el número de filas afectadas
     GET DIAGNOSTICS v_contador = ROW_COUNT;
     
-    -- Registrar la ejecución
-    INSERT INTO log_sistema(operacion, descripcion, fecha)
-    VALUES ('actualizar_vencidos', v_contador || ' préstamos marcados como vencidos', CURRENT_TIMESTAMP);
-    
     -- Retornar el contador para que lo use el método Java
     RETURN v_contador;
 END;

@@ -90,7 +90,7 @@ public class Main {
         // Actualizar préstamos vencidos al iniciar
         int vencidos = prestamoService.actualizarPrestamosVencidos();
         if (vencidos > 0) {
-            System.out.println("ℹ️ Se actualizaron " + vencidos + " préstamos a estado VENCIDO");
+            System.out.println("Se actualizaron " + vencidos + " préstamos a estado VENCIDO");
         }
 
         ApplicationContext context = new ApplicationContext(

@@ -304,12 +304,12 @@ public class PrestamoMenuHandler {
         Optional<Prestamo> prestamo = prestamoService.buscarPorId(prestamoId);
         
         if (prestamo.isEmpty()) {
-            System.out.println("❌ No se encontró un préstamo con ID: " + prestamoId);
+            System.out.println("No se encontró un préstamo con ID: " + prestamoId);
             return;
         }
         
-        if (!"ACTIVO".equals(prestamo.get().getEstado())) {
-            System.out.println("❌ El préstamo no está activo. Estado: " + prestamo.get().getEstado());
+        if ("DEVUELTO".equals(prestamo.get().getEstado())) {
+            System.out.println("No se puede devolver si ya esta devuelto. Estado: " + prestamo.get().getEstado());
             return;
         }
         

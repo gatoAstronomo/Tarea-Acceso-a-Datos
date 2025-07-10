@@ -7,61 +7,61 @@
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- exec:3.1.0:java (default-cli) @ demo ---
-02:48:58,852 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.14
-02:48:58,853 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - No custom configurators were discovered as a service.
-02:48:58,853 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - Trying to configure with ch.qos.logback.classic.joran.SerializedModelConfigurator
-02:48:58,854 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - Constructed configurator of type class ch.qos.logback.classic.joran.SerializedModelConfigurator
-02:48:58,856 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.scmo]
-02:48:58,856 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.scmo]
-02:48:58,859 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - ch.qos.logback.classic.joran.SerializedModelConfigurator.configure() call lasted 2 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
-02:48:58,859 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - Trying to configure with ch.qos.logback.classic.util.DefaultJoranConfigurator
-02:48:58,860 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - Constructed configurator of type class ch.qos.logback.classic.util.DefaultJoranConfigurator
-02:48:58,860 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
-02:48:58,862 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/home/Natur/Documents/vault/111%20Ufro/2025-1/bases-de-datos/sqlconnector/demo/target/classes/logback.xml]
-02:48:59,078 |-INFO in ch.qos.logback.core.model.processor.conditional.IfModelHandler - Condition [property("LOG_MODE").equals("DEBUG")] evaluated to true on line 18
-02:48:59,079 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
-02:48:59,079 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
-02:48:59,081 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
-02:48:59,089 |-WARN in ch.qos.logback.core.model.processor.AppenderModelHandler - Appender named [NULL] not referenced. Skipping further processing.
-02:48:59,089 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [com.example.crudapp] to DEBUG
-02:48:59,089 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[com.example.crudapp]
-02:48:59,089 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [com.zaxxer.hikari] to INFO
-02:48:59,089 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[com.zaxxer.hikari]
-02:48:59,089 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to DEBUG
-02:48:59,089 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
-02:48:59,090 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@44f0ac0d - End of configuration.
-02:48:59,090 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@5258eca - Registering current configuration as safe fallback point
-02:48:59,090 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - ch.qos.logback.classic.util.DefaultJoranConfigurator.configure() call lasted 230 milliseconds. ExecutionStatus=DO_NOT_INVOKE_NEXT_IF_ANY
+03:03:51,501 |-INFO in ch.qos.logback.classic.LoggerContext[default] - This is logback-classic version 1.4.14
+03:03:51,501 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - No custom configurators were discovered as a service.
+03:03:51,501 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - Trying to configure with ch.qos.logback.classic.joran.SerializedModelConfigurator
+03:03:51,502 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - Constructed configurator of type class ch.qos.logback.classic.joran.SerializedModelConfigurator
+03:03:51,504 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.scmo]
+03:03:51,504 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.scmo]
+03:03:51,507 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - ch.qos.logback.classic.joran.SerializedModelConfigurator.configure() call lasted 2 milliseconds. ExecutionStatus=INVOKE_NEXT_IF_ANY
+03:03:51,507 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - Trying to configure with ch.qos.logback.classic.util.DefaultJoranConfigurator
+03:03:51,508 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - Constructed configurator of type class ch.qos.logback.classic.util.DefaultJoranConfigurator
+03:03:51,508 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+03:03:51,510 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/home/Natur/Documents/vault/111%20Ufro/2025-1/bases-de-datos/sqlconnector/demo/target/classes/logback.xml]
+03:03:51,711 |-INFO in ch.qos.logback.core.model.processor.conditional.IfModelHandler - Condition [property("LOG_MODE").equals("DEBUG")] evaluated to true on line 18
+03:03:51,712 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - Processing appender named [CONSOLE]
+03:03:51,712 |-INFO in ch.qos.logback.core.model.processor.AppenderModelHandler - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+03:03:51,715 |-INFO in ch.qos.logback.core.model.processor.ImplicitModelHandler - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+03:03:51,724 |-WARN in ch.qos.logback.core.model.processor.AppenderModelHandler - Appender named [NULL] not referenced. Skipping further processing.
+03:03:51,724 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [com.example.crudapp] to DEBUG
+03:03:51,724 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[com.example.crudapp]
+03:03:51,724 |-INFO in ch.qos.logback.classic.model.processor.LoggerModelHandler - Setting level of logger [com.zaxxer.hikari] to INFO
+03:03:51,724 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[com.zaxxer.hikari]
+03:03:51,724 |-INFO in ch.qos.logback.classic.model.processor.RootLoggerModelHandler - Setting level of ROOT logger to DEBUG
+03:03:51,724 |-INFO in ch.qos.logback.core.model.processor.AppenderRefModelHandler - Attaching appender named [CONSOLE] to Logger[ROOT]
+03:03:51,724 |-INFO in ch.qos.logback.core.model.processor.DefaultProcessor@44f0ac0d - End of configuration.
+03:03:51,725 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@5258eca - Registering current configuration as safe fallback point
+03:03:51,725 |-INFO in ch.qos.logback.classic.util.ContextInitializer@243369b8 - ch.qos.logback.classic.util.DefaultJoranConfigurator.configure() call lasted 217 milliseconds. ExecutionStatus=DO_NOT_INVOKE_NEXT_IF_ANY
 
-02:48:59 INFO  com.example.crudapp.Main - Inicializando contexto de aplicación...
-02:48:59 INFO  com.example.crudapp.Main - Inicializando contexto de aplicación...
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.Database - Propiedades de base de datos cargadas exitosamente
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.Database - Propiedades de base de datos cargadas exitosamente
-02:48:59 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-02:48:59 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-02:48:59 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@40318d55
-02:48:59 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@40318d55
-02:48:59 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-02:48:59 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-02:48:59 INFO  com.example.crudapp.infrastructure.database.Database - Pool de conexiones inicializado correctamente
-02:48:59 INFO  com.example.crudapp.infrastructure.database.Database - Pool de conexiones inicializado correctamente
-02:48:59 INFO  com.example.crudapp.infrastructure.database.DatabaseInitializer - Inicializando base de datos...
-02:48:59 INFO  com.example.crudapp.infrastructure.database.DatabaseInitializer - Inicializando base de datos...
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Ejecutando schema-functions.sql...
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Ejecutando schema-functions.sql...
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Funciones PL/pgSQL ejecutadas correctamente
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Funciones PL/pgSQL ejecutadas correctamente
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Ejecutando schema.sql...
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Ejecutando schema.sql...
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Schema ejecutado correctamente
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Schema ejecutado correctamente
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Verificando si se necesitan datos iniciales...
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Verificando si se necesitan datos iniciales...
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Usuarios existentes: 0
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Usuarios existentes: 0
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Insertando datos iniciales...
-02:48:59 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Insertando datos iniciales...
-02:48:59 ERROR com.example.crudapp.Main - Error al inicializar la aplicación: ERROR: límite de profundidad de stack alcanzado
+03:03:51 INFO  com.example.crudapp.Main - Inicializando contexto de aplicación...
+03:03:51 INFO  com.example.crudapp.Main - Inicializando contexto de aplicación...
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.Database - Propiedades de base de datos cargadas exitosamente
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.Database - Propiedades de base de datos cargadas exitosamente
+03:03:51 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+03:03:51 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+03:03:51 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@40318d55
+03:03:51 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@40318d55
+03:03:51 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+03:03:51 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+03:03:51 INFO  com.example.crudapp.infrastructure.database.Database - Pool de conexiones inicializado correctamente
+03:03:51 INFO  com.example.crudapp.infrastructure.database.Database - Pool de conexiones inicializado correctamente
+03:03:51 INFO  com.example.crudapp.infrastructure.database.DatabaseInitializer - Inicializando base de datos...
+03:03:51 INFO  com.example.crudapp.infrastructure.database.DatabaseInitializer - Inicializando base de datos...
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Ejecutando schema-functions.sql...
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Ejecutando schema-functions.sql...
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Funciones PL/pgSQL ejecutadas correctamente
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Funciones PL/pgSQL ejecutadas correctamente
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Ejecutando schema.sql...
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Ejecutando schema.sql...
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Schema ejecutado correctamente
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Schema ejecutado correctamente
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Verificando si se necesitan datos iniciales...
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Verificando si se necesitan datos iniciales...
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Usuarios existentes: 0
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Usuarios existentes: 0
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Insertando datos iniciales...
+03:03:51 DEBUG com.example.crudapp.infrastructure.database.DatabaseInitializer - Insertando datos iniciales...
+03:03:51 ERROR com.example.crudapp.Main - Error al inicializar la aplicación: ERROR: límite de profundidad de stack alcanzado
   Hint: Incremente el parámetro de configuración «max_stack_depth» (actualmente 2048kB), después de asegurarse que el límite de profundidad de stack de la plataforma es adecuado.
   Where: sentencia SQL: «UPDATE prestamos
     SET estado = 'VENCIDO'
@@ -4377,7 +4377,7 @@ sentencia SQL: «UPDATE prestamos
       AND fecha_devolucion_esperada < CURRENT_DATE
       AND fecha_devolucion_real IS NULL»
 función PL/pgSQL trigger_actualizar_prestamos_vencidos() en la línea 4 en sentencia SQL
-02:48:59 ERROR com.example.crudapp.Main - Error al inicializar la aplicación: ERROR: límite de profundidad de stack alcanzado
+03:03:51 ERROR com.example.crudapp.Main - Error al inicializar la aplicación: ERROR: límite de profundidad de stack alcanzado
   Hint: Incremente el parámetro de configuración «max_stack_depth» (actualmente 2048kB), después de asegurarse que el límite de profundidad de stack de la plataforma es adecuado.
   Where: sentencia SQL: «UPDATE prestamos
     SET estado = 'VENCIDO'

@@ -8,14 +8,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.stream.Collectors;
 
 /**
  * Inicializador de base de datos
- * Ejecuta scripts SQL y verifica la estructura de la base de datos
+ * Ejecuta scripts SQL de forma idempotente (puede ejecutarse múltiples veces)
  * 
+ * @author Tu Nombre
+ * @version 1.0
+ * @since 2025-01-01
  */
 public class DatabaseInitializer {
     
@@ -32,7 +37,7 @@ public class DatabaseInitializer {
     }
     
     /**
-     * Inicializa la base de datos ejecutando el schema.sql
+     * Inicializa la base de datos de forma idempotente
      * 
      * @throws SQLException si hay error en la inicialización
      */
@@ -43,14 +48,17 @@ public class DatabaseInitializer {
             throw new SQLException("No se puede conectar a la base de datos");
         }
         
+        // Siempre ejecutar schema (es idempotente)
         executeSchemaScript();
-        insertInitialData();
+        
+        // Solo insertar datos si las tablas están vacías
+        insertInitialDataIfNeeded();
         
         logger.info("Base de datos inicializada correctamente");
     }
     
     /**
-     * Ejecuta el script schema.sql
+     * Ejecuta el script schema.sql (siempre)
      * 
      * @throws SQLException si hay error ejecutando el script
      */
@@ -60,54 +68,97 @@ public class DatabaseInitializer {
         try (Connection connection = database.getConnection()) {
             String schemaScript = loadResourceAsString("schema.sql");
             
-            try (Statement statement = connection.createStatement()) {
-                // Ejecutar script completo
-                statement.execute(schemaScript);
-                connection.commit();
-                logger.debug("Schema ejecutado correctamente");
+            // Dividir el script en statements individuales
+            String[] statements = schemaScript.split(";");
+            
+            for (String statement : statements) {
+                String trimmedStatement = statement.trim();
+                if (!trimmedStatement.isEmpty()) {
+                    try (Statement stmt = connection.createStatement()) {
+                        stmt.execute(trimmedStatement);
+                    }
+                }
             }
+            
+            connection.commit();
+            logger.debug("Schema ejecutado correctamente");
+            
         } catch (IOException e) {
             throw new SQLException("Error al cargar schema.sql", e);
         }
     }
     
     /**
-     * Inserta datos iniciales si las tablas están vacías
+     * Inserta datos iniciales solo si las tablas están vacías
      * 
      * @throws SQLException si hay error insertando datos
      */
-    private void insertInitialData() throws SQLException {
-        logger.debug("Verificando datos iniciales...");
+    private void insertInitialDataIfNeeded() throws SQLException {
+        logger.debug("Verificando si se necesitan datos iniciales...");
         
         try (Connection connection = database.getConnection()) {
-            // Verificar si hay datos
-            try (Statement statement = connection.createStatement()) {
-                var rs = statement.executeQuery("SELECT COUNT(*) FROM usuarios");
-                if (rs.next() && rs.getInt(1) == 0) {
-                    logger.debug("Insertando datos iniciales...");
-                    executeInitialDataScript();
-                }
+            
+            // Verificar si ya hay datos
+            if (hasInitialData(connection)) {
+                logger.info("Ya existen datos iniciales, omitiendo inserción");
+                return;
             }
+            
+            logger.debug("Insertando datos iniciales...");
+            executeInitialDataScript(connection);
+            connection.commit();
+            
+        } catch (IOException e) {
+            logger.warn("No se encontró initial-data.sql, omitiendo datos iniciales");
         }
     }
     
     /**
-     * Ejecuta script de datos iniciales
+     * Verifica si ya existen datos iniciales
      * 
-     * @throws SQLException si hay error ejecutando el script
+     * @param connection conexión a la base de datos
+     * @return true si ya hay datos, false si está vacía
+     * @throws SQLException si hay error en la consulta
      */
-    private void executeInitialDataScript() throws SQLException {
-        try (Connection connection = database.getConnection()) {
-            String dataScript = loadResourceAsString("initial-data.sql");
+    private boolean hasInitialData(Connection connection) throws SQLException {
+        String checkQuery = "SELECT COUNT(*) FROM usuarios";
+        
+        try (PreparedStatement stmt = connection.prepareStatement(checkQuery);
+             ResultSet rs = stmt.executeQuery()) {
             
-            try (Statement statement = connection.createStatement()) {
-                statement.execute(dataScript);
-                connection.commit();
-                logger.debug("Datos iniciales insertados correctamente");
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                logger.debug("Usuarios existentes: {}", count);
+                return count > 0;
             }
-        } catch (IOException e) {
-            logger.warn("No se encontró initial-data.sql, omitiendo datos iniciales");
+            
+            return false;
         }
+    }
+    
+    /**
+     * Ejecuta el script de datos iniciales
+     * 
+     * @param connection conexión a la base de datos
+     * @throws SQLException si hay error ejecutando el script
+     * @throws IOException si no se puede leer el archivo
+     */
+    private void executeInitialDataScript(Connection connection) throws SQLException, IOException {
+        String dataScript = loadResourceAsString("initial-data.sql");
+        
+        // Dividir el script en statements individuales
+        String[] statements = dataScript.split(";");
+        
+        for (String statement : statements) {
+            String trimmedStatement = statement.trim();
+            if (!trimmedStatement.isEmpty()) {
+                try (Statement stmt = connection.createStatement()) {
+                    stmt.execute(trimmedStatement);
+                }
+            }
+        }
+        
+        logger.debug("Datos iniciales insertados correctamente");
     }
     
     /**

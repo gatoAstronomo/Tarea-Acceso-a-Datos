@@ -1,13 +1,3 @@
--- Función para actualizar fecha_modificacion
-
-CREATE OR REPLACE FUNCTION actualizar_fecha_modificacion()
-RETURNS TRIGGER AS $$
-BEGIN
-    NEW.fecha_modificacion = CURRENT_TIMESTAMP;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
 -- Tabla usuarios
 CREATE TABLE IF NOT EXISTS usuarios (
     id SERIAL PRIMARY KEY,
@@ -74,4 +64,3 @@ CREATE INDEX IF NOT EXISTS idx_libros_isbn ON libros(isbn);
 CREATE INDEX IF NOT EXISTS idx_prestamos_usuario_id ON prestamos(usuario_id);
 CREATE INDEX IF NOT EXISTS idx_prestamos_libro_id ON prestamos(libro_id);
 CREATE INDEX IF NOT EXISTS idx_prestamos_estado ON prestamos(estado);
-

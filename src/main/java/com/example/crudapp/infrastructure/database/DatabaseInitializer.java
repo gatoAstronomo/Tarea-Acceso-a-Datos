@@ -45,17 +45,44 @@ public class DatabaseInitializer {
             throw new SQLException("No se puede conectar a la base de datos");
         }
         
-        // Siempre ejecutar schema (es idempotente)
+        // 1. Ejecutar funciones PL/pgSQL primero
+        executeFunctionsScript();
+        
+        // 2. Luego ejecutar schema (tablas, triggers, índices)
         executeSchemaScript();
         
-        // Solo insertar datos si las tablas están vacías
+        // 3. Finalmente insertar datos iniciales si es necesario
         insertInitialDataIfNeeded();
         
         logger.info("Base de datos inicializada correctamente");
     }
     
     /**
-     * Ejecuta el script schema.sql (siempre)
+     * Ejecuta el script de funciones PL/pgSQL
+     * 
+     * @throws SQLException si hay error ejecutando el script
+     */
+    private void executeFunctionsScript() throws SQLException {
+        logger.debug("Ejecutando schema-functions.sql...");
+        
+        try (Connection connection = database.getConnection()) {
+            String functionsScript = loadResourceAsString("schema-functions.sql");
+            
+            // Ejecutar script completo (funciones PL/pgSQL pueden tener $$ delimiters)
+            try (Statement stmt = connection.createStatement()) {
+                stmt.execute(functionsScript);
+            }
+            
+            connection.commit();
+            logger.debug("Funciones PL/pgSQL ejecutadas correctamente");
+            
+        } catch (IOException e) {
+            logger.warn("No se encontró schema-functions.sql, omitiendo funciones");
+        }
+    }
+    
+    /**
+     * Ejecuta el script schema.sql (tablas, triggers, índices)
      * 
      * @throws SQLException si hay error ejecutando el script
      */
@@ -65,12 +92,13 @@ public class DatabaseInitializer {
         try (Connection connection = database.getConnection()) {
             String schemaScript = loadResourceAsString("schema.sql");
             
-            // Dividir el script en statements individuales
+            // Dividir el script en statements individuales por ;
             String[] statements = schemaScript.split(";");
             
             for (String statement : statements) {
                 String trimmedStatement = statement.trim();
                 if (!trimmedStatement.isEmpty()) {
+                    logger.trace("Ejecutando: {}", trimmedStatement.substring(0, Math.min(50, trimmedStatement.length())) + "...");
                     try (Statement stmt = connection.createStatement()) {
                         stmt.execute(trimmedStatement);
                     }
@@ -143,12 +171,13 @@ public class DatabaseInitializer {
     private void executeInitialDataScript(Connection connection) throws SQLException, IOException {
         String dataScript = loadResourceAsString("initial-data.sql");
         
-        // Dividir el script en statements individuales
+        // Dividir el script en statements individuales por ;
         String[] statements = dataScript.split(";");
         
         for (String statement : statements) {
             String trimmedStatement = statement.trim();
             if (!trimmedStatement.isEmpty()) {
+                logger.trace("Ejecutando data: {}", trimmedStatement.substring(0, Math.min(50, trimmedStatement.length())) + "...");
                 try (Statement stmt = connection.createStatement()) {
                     stmt.execute(trimmedStatement);
                 }

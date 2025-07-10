@@ -23,8 +23,9 @@ import java.sql.SQLException;
  * 
  */
 public class Main {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     
     /**
      * Punto de entrada de la aplicación
@@ -41,6 +42,7 @@ public class Main {
             // Iniciar interfaz de usuario
             ConsoleUI consoleUI = new ConsoleUI(context);
             consoleUI.iniciar();
+            Database.getInstance().close();
             
         } catch (SQLException e) {
             logger.error("Error al inicializar la aplicación: {}", e.getMessage());

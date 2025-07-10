@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    
+    <!-- Appender para consola -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level %logger{999} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- Appender que no hace nada (para modo silencioso) -->
+    <appender name="NULL" class="ch.qos.logback.core.helpers.NOPAppender"/>
+    
+    <!-- Variable que controla todo: SILENT o DEBUG -->
+    <variable name="MODE" value="${LOG_MODE:-SILENT}" />
+    
+    <!-- Configuración condicional -->
+    <if condition='property("LOG_MODE").equals("DEBUG")'>
+        <then>
+            <!-- MODO DEBUG: Todo visible -->
+            <logger name="com.example.crudapp" level="DEBUG">
+                <appender-ref ref="CONSOLE"/>
+            </logger>
+            <logger name="com.zaxxer.hikari" level="INFO">
+                <appender-ref ref="CONSOLE"/>
+            </logger>
+            <root level="DEBUG">
+                <appender-ref ref="CONSOLE"/>
+            </root>
+        </then>
+        <else>
+            <!-- MODO SILENCIOSO: Todo oculto -->
+            <logger name="com.example.crudapp" level="OFF">
+                <appender-ref ref="NULL"/>
+            </logger>
+            <logger name="com.zaxxer.hikari" level="OFF">
+                <appender-ref ref="NULL"/>
+            </logger>
+            <logger name="org.postgresql" level="OFF">
+                <appender-ref ref="NULL"/>
+            </logger>
+            <root level="OFF">
+                <appender-ref ref="NULL"/>
+            </root>
+        </else>
+    </if>
+    
+</configuration>

@@ -150,7 +150,7 @@ public class LibroMenuHandler {
         
         try {
             Libro libro = libroService.crearLibro(libroDTO);
-            System.out.println("✅ Libro creado exitosamente:");
+            System.out.println("  Libro creado exitosamente:");
             mostrarLibro(libro);
             
         } catch (IllegalArgumentException e) {
@@ -190,7 +190,7 @@ public class LibroMenuHandler {
         Optional<Libro> libro = libroService.buscarPorId(id);
         
         if (libro.isPresent()) {
-            System.out.println("✅ Libro encontrado:");
+            System.out.println("  Libro encontrado:");
             mostrarLibro(libro.get());
         } else {
             System.out.println("❌ No se encontró un libro con ID: " + id);
@@ -210,7 +210,7 @@ public class LibroMenuHandler {
         Optional<Libro> libro = libroService.buscarPorIsbn(isbn);
         
         if (libro.isPresent()) {
-            System.out.println("✅ Libro encontrado:");
+            System.out.println("  Libro encontrado:");
             mostrarLibro(libro.get());
         } else {
             System.out.println("❌ No se encontró un libro con ISBN: " + isbn);
@@ -232,7 +232,7 @@ public class LibroMenuHandler {
         if (libros.isEmpty()) {
             System.out.println("❌ No se encontraron libros con el título: " + titulo);
         } else {
-            System.out.println(String.format("✅ Se encontraron %d libros:", libros.size()));
+            System.out.println(String.format("  Se encontraron %d libros:", libros.size()));
             tableFormatter.mostrarTablaLibros(libros);
         }
     }
@@ -252,7 +252,7 @@ public class LibroMenuHandler {
         if (libros.isEmpty()) {
             System.out.println("❌ No se encontraron libros del autor: " + autor);
         } else {
-            System.out.println(String.format("✅ Se encontraron %d libros:", libros.size()));
+            System.out.println(String.format("  Se encontraron %d libros:", libros.size()));
             tableFormatter.mostrarTablaLibros(libros);
         }
     }
@@ -299,7 +299,7 @@ public class LibroMenuHandler {
         
         try {
             libroService.actualizarLibro(id, libroDTO);
-            System.out.println("✅ Libro actualizado exitosamente");
+            System.out.println("  Libro actualizado exitosamente");
             
         } catch (IllegalArgumentException e) {
             System.err.println("❌ Error: " + e.getMessage());
@@ -331,7 +331,7 @@ public class LibroMenuHandler {
         if (confirmar) {
             try {
                 libroService.eliminarLibro(id);
-                System.out.println("✅ Libro eliminado exitosamente");
+                System.out.println("  Libro eliminado exitosamente");
                 
             } catch (IllegalArgumentException e) {
                 System.err.println("❌ Error: " + e.getMessage());

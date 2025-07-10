@@ -12,7 +12,9 @@ import com.example.crudapp.infrastructure.transactions.TransactionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -120,7 +122,7 @@ public class PrestamoService {
                 throw new IllegalArgumentException(mensaje);
             }
 
-            // ✅ NUEVA VALIDACIÓN: Verificar que el libro no tenga préstamos activos
+            //   NUEVA VALIDACIÓN: Verificar que el libro no tenga préstamos activos
             Optional<Prestamo> prestamoActivo = prestamoRepository.findPrestamoActivoByLibroId(connection,
                     prestamoDTO.getLibroId());
             if (prestamoActivo.isPresent()) {
@@ -246,7 +248,8 @@ public class PrestamoService {
 
         LocalDate fechaDevolucionFinal = fechaDevolucion != null ? fechaDevolucion : LocalDate.now();
 
-        logger.debug("Devolviendo libro para préstamo ID: {} en fecha: {} con las siguientes observaciones: {}", prestamoId, fechaDevolucionFinal, observaciones);
+        logger.debug("Devolviendo libro para préstamo ID: {} en fecha: {} con las siguientes observaciones: {}",
+                prestamoId, fechaDevolucionFinal, observaciones);
 
         transactionManager.executeInTransactionVoid(connection -> {
             Optional<Prestamo> prestamoOpt = prestamoRepository.findById(connection, prestamoId);
@@ -323,30 +326,26 @@ public class PrestamoService {
 
     /**
      * Actualiza el estado de préstamos vencidos
-     * Marca como vencidos todos los préstamos activos que superaron la fecha de
-     * devolución
+     * Utiliza la función PL/pgSQL actualizar_prestamos_vencidos()
      * 
      * @return número de préstamos marcados como vencidos
      * @throws SQLException si ocurre un error de base de datos
      */
     public int actualizarPrestamosVencidos() throws SQLException {
-        logger.debug("Actualizando préstamos vencidos");
+        logger.debug("Actualizando préstamos vencidos mediante función PL/pgSQL");
 
         return transactionManager.executeInTransaction(connection -> {
-            List<Prestamo> prestamosActivos = prestamoRepository.findByEstado(connection, ESTADO_ACTIVO);
-            LocalDate fechaActual = LocalDate.now();
-            int contador = 0;
+            try (CallableStatement stmt = connection.prepareCall("{? = call actualizar_prestamos_vencidos()}")) {
+                // Registrar el parámetro de retorno (número de filas actualizadas)
+                stmt.registerOutParameter(1, Types.INTEGER);
+                stmt.execute();
 
-            for (Prestamo prestamo : prestamosActivos) {
-                if (prestamo.getFechaDevolucionEsperada().isBefore(fechaActual)) {
-                    prestamo.setEstado(ESTADO_VENCIDO);
-                    prestamoRepository.update(connection, prestamo);
-                    contador++;
-                }
+                // Obtener el contador de actualizaciones
+                int filasActualizadas = stmt.getInt(1);
+
+                logger.info("Se marcaron {} préstamos como vencidos", filasActualizadas);
+                return filasActualizadas;
             }
-
-            logger.info("Se marcaron {} préstamos como vencidos", contador);
-            return contador;
         });
     }
 

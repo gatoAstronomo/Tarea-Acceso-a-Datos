@@ -133,7 +133,7 @@ public class UsuarioMenuHandler {
         
         try {
             Usuario usuario = usuarioService.crearUsuario(usuarioDTO);
-            System.out.println("✅ Usuario creado exitosamente:");
+            System.out.println("  Usuario creado exitosamente:");
             mostrarUsuario(usuario);
             
         } catch (IllegalArgumentException e) {
@@ -173,7 +173,7 @@ public class UsuarioMenuHandler {
         Optional<Usuario> usuario = usuarioService.buscarPorId(id);
         
         if (usuario.isPresent()) {
-            System.out.println("✅ Usuario encontrado:");
+            System.out.println("  Usuario encontrado:");
             mostrarUsuario(usuario.get());
         } else {
             System.out.println("❌ No se encontró un usuario con ID: " + id);
@@ -216,7 +216,7 @@ public class UsuarioMenuHandler {
         
         try {
             usuarioService.actualizarUsuario(id, usuarioDTO);
-            System.out.println("✅ Usuario actualizado exitosamente:");
+            System.out.println("  Usuario actualizado exitosamente:");
             mostrarUsuario(usuarioService.buscarPorId(id).get());
         } catch (IllegalArgumentException e) {
             System.err.println("❌ Error: " + e.getMessage());
@@ -248,7 +248,7 @@ public class UsuarioMenuHandler {
         if (confirmar) {
             try {
                 usuarioService.eliminarUsuario(id);
-                System.out.println("✅ Usuario eliminado exitosamente.");
+                System.out.println("  Usuario eliminado exitosamente.");
             } catch (IllegalArgumentException e) {
                 System.err.println("❌ Error: " + e.getMessage());
             }

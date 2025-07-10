@@ -89,7 +89,7 @@
           <version>3.1.0</version>
           <configuration>
             <mainClass>com.example.crudapp.Main</mainClass>
-            <!-- ✅ ELIMINÉ todas las systemProperties que causaban el conflicto -->
+            <!--   ELIMINÉ todas las systemProperties que causaban el conflicto -->
           </configuration>
         </plugin>
 

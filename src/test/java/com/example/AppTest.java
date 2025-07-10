@@ -17,7 +17,6 @@ import org.junit.Test;
 import com.example.crudapp.application.dto.PrestamoDTO;
 import com.example.crudapp.application.services.PrestamoService;
 import com.example.crudapp.domain.entities.Prestamo;
-import com.example.crudapp.domain.entities.Usuario;
 import com.example.crudapp.domain.repositories.LibroRepository;
 import com.example.crudapp.domain.repositories.PrestamoRepository;
 import com.example.crudapp.infrastructure.database.Database;
@@ -68,11 +67,11 @@ public class AppTest {
 
         latch.await();
 
-        // ✅ ACID: Solo UNO debe tener éxito
+        //   ACID: Solo UNO debe tener éxito
         assertEquals(1, exitos.get());
         assertEquals(1, errores.get());
 
-        // ✅ Verificar estado consistente
+        //   Verificar estado consistente
         List<Prestamo> prestamosActivos = prestamoRepository.findPrestamosActivosByLibroId(Database.getInstance().getConnection(),1L);
         assertEquals(1, prestamosActivos.size());
     }

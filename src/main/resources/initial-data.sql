@@ -118,22 +118,3 @@ WHERE id NOT IN (
     FROM prestamos p 
     WHERE p.estado IN ('ACTIVO', 'VENCIDO')
 ) AND disponible = false;
-
-/*
-SELECT 
-    l.id,
-    l.titulo,
-    l.disponible,
-    COALESCE(p.estado, 'SIN PRÉSTAMO') as estado_prestamo,
-    COALESCE(u.nombre, 'Nadie') as usuario_actual,
-    CASE 
-        WHEN p.fecha_devolucion_esperada < CURRENT_DATE AND p.estado = 'ACTIVO' THEN 'VENCIDO'
-        WHEN p.estado = 'ACTIVO' THEN 'VIGENTE'
-        WHEN p.estado = 'DEVUELTO' THEN 'HISTÓRICO'
-        ELSE 'DISPONIBLE'
-    END as situacion
-FROM libros l
-LEFT JOIN prestamos p ON l.id = p.libro_id AND p.estado IN ('ACTIVO', 'VENCIDO')
-LEFT JOIN usuarios u ON p.usuario_id = u.id
-ORDER BY l.id;
-*/

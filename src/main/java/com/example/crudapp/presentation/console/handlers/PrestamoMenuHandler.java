@@ -198,7 +198,7 @@ public class PrestamoMenuHandler {
         
         try {
             Prestamo prestamo = prestamoService.crearPrestamo(prestamoDTO);
-            System.out.println("✅ Préstamo creado exitosamente:");
+            System.out.println("  Préstamo creado exitosamente:");
             mostrarPrestamo(prestamo);
             
         } catch (IllegalArgumentException e) {
@@ -238,7 +238,7 @@ public class PrestamoMenuHandler {
         Optional<Prestamo> prestamo = prestamoService.buscarPorId(id);
         
         if (prestamo.isPresent()) {
-            System.out.println("✅ Préstamo encontrado:");
+            System.out.println("  Préstamo encontrado:");
             mostrarPrestamo(prestamo.get());
         } else {
             System.out.println("❌ No se encontró un préstamo con ID: " + id);
@@ -284,7 +284,7 @@ public class PrestamoMenuHandler {
         List<Prestamo> prestamosVencidos = prestamoService.obtenerPrestamosVencidos();
         
         if (prestamosVencidos.isEmpty()) {
-            System.out.println("✅ No hay préstamos vencidos.");
+            System.out.println("  No hay préstamos vencidos.");
         } else {
             System.out.println(String.format("⚠️ Se encontraron %d préstamos vencidos:", prestamosVencidos.size()));
             tableFormatter.mostrarTablaPrestamos(prestamosVencidos);
@@ -330,7 +330,7 @@ public class PrestamoMenuHandler {
         
         try {
             prestamoService.devolverLibro(prestamoId, fechaDevolucion, observaciones);
-            System.out.println("✅ Libro devuelto exitosamente");
+            System.out.println("  Libro devuelto exitosamente");
             
         } catch (IllegalArgumentException e) {
             System.err.println("❌ Error: " + e.getMessage());
@@ -366,7 +366,7 @@ public class PrestamoMenuHandler {
         
         try {
             prestamoService.renovarPrestamo(prestamoId, diasExtension);
-            System.out.println(String.format("✅ Préstamo renovado exitosamente por %d días", diasExtension));
+            System.out.println(String.format("  Préstamo renovado exitosamente por %d días", diasExtension));
             
         } catch (IllegalArgumentException e) {
             System.err.println("❌ Error: " + e.getMessage());
@@ -386,7 +386,7 @@ public class PrestamoMenuHandler {
         int prestamosActualizados = prestamoService.actualizarPrestamosVencidos();
         
         if (prestamosActualizados == 0) {
-            System.out.println("✅ No se encontraron préstamos vencidos para actualizar");
+            System.out.println("  No se encontraron préstamos vencidos para actualizar");
         } else {
             System.out.println(String.format("⚠️ Se marcaron %d préstamos como vencidos", prestamosActualizados));
         }

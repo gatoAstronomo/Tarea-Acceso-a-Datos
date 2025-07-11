@@ -16,6 +16,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Clase principal de la aplicación
@@ -39,9 +44,14 @@ public class Main {
             // Configurar dependencias
             ApplicationContext context = createApplicationContext();
 
+            // Programar actualización diaria de préstamos vencidos
+            programarActualizacionVencidos(context.getPrestamoService());
+
             // Iniciar interfaz de usuario
             ConsoleUI consoleUI = new ConsoleUI(context);
             consoleUI.iniciar();
+
+            // Al salir del menú de la consola termina el pool de conexiones a la base de datos
             Database.getInstance().close();
 
         } catch (SQLException e) {
@@ -105,6 +115,7 @@ public class Main {
     /**
      * Contexto de aplicación que contiene todas las dependencias
      * Simple contenedor de servicios para dependency injection manual
+     *
      */
     public static class ApplicationContext {
 
@@ -153,5 +164,32 @@ public class Main {
         public PrestamoService getPrestamoService() {
             return prestamoService;
         }
+    }
+
+    /**
+     * Programa la actualización de préstamos vencidos para ejecutarse a medianoche
+     */
+    private static void programarActualizacionVencidos(PrestamoService prestamoService) {
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+        // Calcular tiempo hasta la próxima medianoche
+        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime proximaMedianoche = ahora.toLocalDate().plusDays(1).atStartOfDay();
+        long segundosHastaMedianoche = ChronoUnit.SECONDS.between(ahora, proximaMedianoche);
+
+        // Programar la tarea
+        scheduler.scheduleAtFixedRate(() -> {
+            try {
+                int actualizados = prestamoService.actualizarPrestamosVencidos();
+                if (actualizados > 0) {
+                    System.out.println("🕛 [Tarea programada] " + actualizados +
+                            " préstamos marcados como VENCIDOS");
+                }
+            } catch (Exception e) {
+                System.err.println("Error en tarea programada: " + e.getMessage());
+            }
+        }, segundosHastaMedianoche, 86400, TimeUnit.SECONDS); // 86400 segundos = 1 día
+
+        logger.info("Actualización de préstamos vencidos programada para ejecutarse a medianoche");
     }
 }

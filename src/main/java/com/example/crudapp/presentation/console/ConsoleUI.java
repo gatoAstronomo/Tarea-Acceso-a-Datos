@@ -73,7 +73,6 @@ public class ConsoleUI {
         System.out.println("    SISTEMA DE GESTIÓN DE BIBLIOTECA");
         System.out.println("=".repeat(50));
         System.out.println("Bienvenido al sistema de gestión de biblioteca");
-        System.out.println("Versión 1.0\n");
     }
     
     /**

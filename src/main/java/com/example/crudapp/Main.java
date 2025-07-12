@@ -182,7 +182,7 @@ public class Main {
             try {
                 int actualizados = prestamoService.actualizarPrestamosVencidos();
                 if (actualizados > 0) {
-                    System.out.println("🕛 [Tarea programada] " + actualizados +
+                    System.out.println("[Tarea programada] " + actualizados +
                             " préstamos marcados como VENCIDOS");
                 }
             } catch (Exception e) {

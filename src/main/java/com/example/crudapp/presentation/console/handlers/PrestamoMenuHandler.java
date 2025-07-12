@@ -423,7 +423,7 @@ public class PrestamoMenuHandler {
                 prestamo.getFechaDevolucionEsperada(),
                 prestamo.getFechaDevolucionReal() != null ? prestamo.getFechaDevolucionReal().toString() : "No devuelto",
                 prestamo.getEstado(),
-                prestamo.getObservaciones() != null ? prestamo.getObservaciones() : "Sin observaciones"
+                prestamo.getObservaciones()// != null ? prestamo.getObservaciones() : "Sin observaciones"
             ));
             
         } catch (SQLException e) {
